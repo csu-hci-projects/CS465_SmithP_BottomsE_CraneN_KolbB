@@ -1,0 +1,20 @@
+{
+	"version": 1,
+	"changelists": [
+		{
+			"guid": "00000000000000000000000000000000",
+			"description": "Default Uncontrolled Changelist",
+			"files": [
+				"C:/Users/smith/OneDrive/Documents/Unreal Projects/MyProject2/Content/VRTemplate/Maps/VRTemplateMap.umap",
+				"C:/Users/smith/OneDrive/Documents/Unreal Projects/MyProject2/Content/VRTemplate/Maps/Untitled.umap",
+				"C:/Users/smith/OneDrive/Documents/Unreal Projects/MyProject2/Content/Buttons/circle_button_circle_cube.uasset",
+				"C:/Users/smith/OneDrive/Documents/Unreal Projects/MyProject2/Content/Buttons/arrow_button_arrow_cube.uasset",
+				"C:/Users/smith/OneDrive/Documents/Unreal Projects/MyProject2/Content/Buttons/base_material.uasset",
+				"C:/Users/smith/OneDrive/Documents/Unreal Projects/MyProject2/Content/Buttons/symbol_material.uasset",
+				"C:/Users/smith/OneDrive/Documents/Unreal Projects/MyProject2/Content/Buttons/arrow_button_circle_cube.uasset",
+				"C:/Users/smith/OneDrive/Documents/Unreal Projects/MyProject2/Content/Buttons/circle_button_arrow_cube.uasset",
+				"C:/Users/smith/OneDrive/Documents/Unreal Projects/MyProject2/Content/CS465.umap"
+			]
+		}
+	]
+}
