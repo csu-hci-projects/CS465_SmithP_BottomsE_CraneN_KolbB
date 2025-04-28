@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Inputs.Haptics;
 
 public class Highlighter : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class Highlighter : MonoBehaviour
     public AudioSource audioSource;
 
     private MeshRenderer meshRenderer;
+    private MxInkHandler stylusHandler;
+    private HapticImpulsePlayer hapticPlayer;
 
     void Start()
     {
@@ -18,11 +21,18 @@ public class Highlighter : MonoBehaviour
         interactable.hoverEntered.AddListener(OnHoverEnter);
         interactable.hoverExited.AddListener(OnHoverExit);
         interactable.selectEntered.AddListener(OnClick);
+
+        stylusHandler = FindObjectOfType<MxInkHandler>();
+        hapticPlayer = FindFirstObjectByType<HapticImpulsePlayer>(); // get the Near-Far Interactor's haptic
     }
 
     void OnHoverEnter(HoverEnterEventArgs args)
     {
-        meshRenderer.material = highlightMaterial;
+        if (FeedbackManager.Instance.HasVisual)
+            meshRenderer.material = highlightMaterial;
+
+        if (FeedbackManager.Instance.HasHaptic && hapticPlayer != null)
+            hapticPlayer.SendHapticImpulse(0.2f, 0.05f);
     }
 
     void OnHoverExit(HoverExitEventArgs args)
@@ -32,9 +42,10 @@ public class Highlighter : MonoBehaviour
 
     void OnClick(SelectEnterEventArgs args)
     {
-        if (audioSource != null)
-        {
+        if (FeedbackManager.Instance.HasAudio && audioSource != null)
             audioSource.Play();
-        }
+
+        if (FeedbackManager.Instance.HasHaptic && hapticPlayer != null)
+            hapticPlayer.SendHapticImpulse(1.0f, 0.1f);
     }
 }

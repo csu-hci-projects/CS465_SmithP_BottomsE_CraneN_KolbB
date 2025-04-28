@@ -7,27 +7,27 @@
             "actions": [
                 {
                     "name": "Ink_Tip",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "03b11d17-5072-4b05-b9e9-458424b27450",
-                    "expectedControlType": "Analog",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Ink_MiddleButton",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "9b11cbb6-992c-4414-94f9-59a9c798e474",
-                    "expectedControlType": "Analog",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Grab",
                     "type": "Button",
                     "id": "2a733a58-54e8-41f9-b7ea-1e00717bc3ec",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false

@@ -9,6 +9,7 @@ public class MxInkHandler : StylusHandler
     public Color double_tap_active_color = Color.cyan;
     public Color default_color = Color.black;
 
+    private static bool clusterFrontJustPressed = false;
     [SerializeField]
     private InputActionReference _tipActionRef;
     [SerializeField]
@@ -60,8 +61,10 @@ public class MxInkHandler : StylusHandler
         _stylus.inkingPose.rotation = transform.rotation;
         _stylus.tip_value = _tipActionRef.action.ReadValue<float>();
         _stylus.cluster_middle_value = _middleActionRef.action.ReadValue<float>();
+        bool wasPressedLastFrame = _stylus.cluster_front_value;
         _stylus.cluster_front_value = _grabActionRef.action.IsPressed();
         _stylus.cluster_back_value = _optionActionRef.action.IsPressed();
+        clusterFrontJustPressed = (!_stylus.cluster_front_value && _grabActionRef.action.IsPressed());
 
         _tip.GetComponent<MeshRenderer>().material.color = _stylus.tip_value > 0 ? active_color : default_color;
         _cluster_front.GetComponent<MeshRenderer>().material.color = _stylus.cluster_front_value ? active_color : default_color;
@@ -84,4 +87,14 @@ public class MxInkHandler : StylusHandler
     {
         return true;
     }
+    public static bool ClusterFrontJustPressed()
+    {
+        if (clusterFrontJustPressed)
+        {
+            clusterFrontJustPressed = false;
+            return true;
+        }
+        return false;
+    }
+
 }
