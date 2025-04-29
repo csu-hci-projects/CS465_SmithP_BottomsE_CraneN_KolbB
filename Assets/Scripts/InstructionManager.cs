@@ -52,6 +52,27 @@ public class InstructionManager : MonoBehaviour
             return null;
     }
 
+    public void RepeatCurrentInstruction()
+    {
+        if (currentInstructionIndex < instructionOrder.Count)
+        {
+            string instruction = instructionOrder[currentInstructionIndex];
+            AudioClip clip = FindAudioClip(instruction);
+
+            if (clip != null)
+            {
+                audioSource.Stop(); // Stop any previous playing audio
+                audioSource.clip = clip;
+                audioSource.Play();
+                Debug.Log("Repeating instruction: " + instruction);
+            }
+            else
+            {
+                Debug.LogWarning("Audio clip not found for repeating instruction: " + instruction);
+            }
+        }
+    }
+
     public void OnCorrectButtonPressed()
     {
         if (trialComplete) return;

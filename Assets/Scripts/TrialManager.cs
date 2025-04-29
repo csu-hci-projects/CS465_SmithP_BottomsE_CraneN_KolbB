@@ -45,9 +45,17 @@ public class TrialManager : MonoBehaviour
         currentPermutation = permutations[randomIndex];
 
         currentInstructionIndex = 0;
-        instructionManager.StartInstructions(currentPermutation);
+
+        List<string> selectedInstructions = new List<string>();
+        while (selectedInstructions.Count < 50)
+        {
+            selectedInstructions.Add(currentPermutation[Random.Range(0, currentPermutation.Count)]);
+        }
+
+        instructionManager.StartInstructions(selectedInstructions);
         dataLogger.StartTrial();
         trialRunning = true;
+
     }
 
     private void Update()
@@ -64,30 +72,33 @@ public class TrialManager : MonoBehaviour
         string expectedButton = instructionManager.GetCurrentInstruction();
         string lastPressed = ButtonIdentifier.LastPressed;
 
-        bool clusterFrontPressed = MxInkHandler.ClusterFrontJustPressed(); // Check if stylus click button was pressed
-
-        if (!string.IsNullOrEmpty(expectedButton) && expectedButton.ToLower() == lastPressed)
+        if (!string.IsNullOrEmpty(lastPressed))
         {
-            float hoverToClickTime = ButtonIdentifier.GetHoverDurationAndReset();
-            dataLogger.RecordInstruction(true); // Correct instruction
-            dataLogger.RecordSelection(true, hoverToClickTime); // Successful selection
+            if (!string.IsNullOrEmpty(expectedButton) && expectedButton.ToLower() == lastPressed)
+            {
+                Debug.Log("Correct button pressed: " + lastPressed);
+                float hoverToClickTime = ButtonIdentifier.GetHoverDurationAndReset();
+                dataLogger.RecordInstruction(true);
+                dataLogger.RecordSelection(true, hoverToClickTime);
 
-            ButtonIdentifier.LastPressed = "";
-            instructionManager.OnCorrectButtonPressed();
-        }
-        else if (!string.IsNullOrEmpty(lastPressed))
-        {
-            dataLogger.RecordInstruction(false); // Incorrect instruction
-            dataLogger.RecordSelection(true, 0f); // Still a selection occurred, even if wrong
+                ButtonIdentifier.LastPressed = ""; // reset
+                instructionManager.OnCorrectButtonPressed(); // move to next instruction
+            }
+            else
+            {
+                Debug.LogWarning("Wrong button pressed: " + lastPressed);
+                dataLogger.RecordInstruction(false);
+                dataLogger.RecordSelection(false, 0f);
 
-            ButtonIdentifier.LastPressed = "";
-        }
-        else if (clusterFrontPressed)
-        {
-            dataLogger.RecordInstruction(false); // Incorrect instruction
-            dataLogger.RecordSelection(false, 0f); // No valid button hit
+                ButtonIdentifier.LastPressed = ""; // reset
+
+                //replay the same instruction audio if wrong
+                instructionManager.RepeatCurrentInstruction();
+            }
         }
     }
+
+
 
 
 
