@@ -49,8 +49,8 @@ public class DataLogger : MonoBehaviour
         filePath = Path.Combine(Application.dataPath, "DataLogs", fileName);
 
         float trialCompletionTime = Time.time - trialStartTime;
-        float hitRate = instructionCount > 0 ? (float)correctCount / instructionCount : 0f;
-        float correctnessRate = clickCount > 0 ? (float)hitCount / clickCount : 0f;
+        float correctnessRate = instructionCount > 0 ? (float)correctCount / instructionCount : 0f;
+        float hitRate = clickCount > 0 ? (float)hitCount / clickCount : 0f;
         float meanSelectionSpeed = hitCount > 0 ? totalSelectionSpeed / hitCount : 0f;
 
         using (StreamWriter writer = new StreamWriter(filePath))
