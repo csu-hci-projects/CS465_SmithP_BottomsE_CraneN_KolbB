@@ -841,6 +841,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5560355087081095046, guid: 4578fcaa6cde11c4f95220c7a57f9b66, type: 3}
   m_PrefabInstance: {fileID: 847869045}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &493156263 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3293723703951620964, guid: 4578fcaa6cde11c4f95220c7a57f9b66, type: 3}
+  m_PrefabInstance: {fileID: 847869045}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &521787627
 GameObject:
   m_ObjectHideFlags: 0
@@ -1141,7 +1146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b112e236d5a29b4c9bd5b3a906b345b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentFeedbackType: 4
+  currentFeedbackType: 3
 --- !u!20 &613804715 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 1767192439, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
@@ -1401,6 +1406,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1155323794}
     m_Modifications:
+    - target: {fileID: 130500635472496801, guid: b200f6587d118224eba8467281481800, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2447424620550846319, guid: b200f6587d118224eba8467281481800, type: 3}
       propertyPath: m_Name
       value: Near-Far Interactor (1)
@@ -1538,12 +1547,24 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6288467125497789300, guid: b200f6587d118224eba8467281481800, type: 3}
+      propertyPath: m_RetractDelay
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6288467125497789300, guid: b200f6587d118224eba8467281481800, type: 3}
       propertyPath: m_CurveEndOffset
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6288467125497789300, guid: b200f6587d118224eba8467281481800, type: 3}
+      propertyPath: m_RetractDuration
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6288467125497789300, guid: b200f6587d118224eba8467281481800, type: 3}
       propertyPath: m_CurveStartOffset
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6288467125497789300, guid: b200f6587d118224eba8467281481800, type: 3}
+      propertyPath: m_OverrideLineOrigin
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6288467125497789300, guid: b200f6587d118224eba8467281481800, type: 3}
       propertyPath: m_MaxVisualCurveDistance
@@ -1588,6 +1609,30 @@ PrefabInstance:
     - target: {fileID: 8229381180640938747, guid: b200f6587d118224eba8467281481800, type: 3}
       propertyPath: m_HitDetectionType
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8229381180640938747, guid: b200f6587d118224eba8467281481800, type: 3}
+      propertyPath: m_EnableStabilization
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8408429868716997126, guid: b200f6587d118224eba8467281481800, type: 3}
+      propertyPath: m_UseMomentum
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8408429868716997126, guid: b200f6587d118224eba8467281481800, type: 3}
+      propertyPath: m_TransformToFollow
+      value: 
+      objectReference: {fileID: 493156263}
+    - target: {fileID: 8408429868716997126, guid: b200f6587d118224eba8467281481800, type: 3}
+      propertyPath: m_AngleStabilization
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8408429868716997126, guid: b200f6587d118224eba8467281481800, type: 3}
+      propertyPath: m_PositionStabilization
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8408429868716997126, guid: b200f6587d118224eba8467281481800, type: 3}
+      propertyPath: m_MotionStabilizationMode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8408429868716997126, guid: b200f6587d118224eba8467281481800, type: 3}
       propertyPath: m_ManipulationInput.m_InputSourceMode
