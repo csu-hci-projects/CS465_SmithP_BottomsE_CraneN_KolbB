@@ -11,6 +11,8 @@ public class DataLogger : MonoBehaviour
     private float totalSelectionSpeed = 0f;
     private float trialStartTime = 0f;
     private string filePath;
+    private int totalSelectionAttempts = 0;
+    private int successfulSelections = 0;
 
     public void StartTrial()
     {
@@ -27,6 +29,13 @@ public class DataLogger : MonoBehaviour
         instructionCount++;
         if (correct)
             correctCount++;
+    }
+
+    public void RecordRawSelectionAttempt(bool wasSuccessful)
+    {
+        totalSelectionAttempts++;
+        if (wasSuccessful)
+            successfulSelections++;
     }
 
     public void RecordSelection(bool hit, float hoverToClickTime)
@@ -50,7 +59,7 @@ public class DataLogger : MonoBehaviour
 
         float trialCompletionTime = Time.time - trialStartTime;
         float correctnessRate = instructionCount > 0 ? (float)correctCount / instructionCount : 0f;
-        float hitRate = clickCount > 0 ? (float)hitCount / clickCount : 0f;
+        float hitRate = totalSelectionAttempts > 0 ? (float)successfulSelections / totalSelectionAttempts : 0f;
         float meanSelectionSpeed = hitCount > 0 ? totalSelectionSpeed / hitCount : 0f;
 
         using (StreamWriter writer = new StreamWriter(filePath))

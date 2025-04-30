@@ -47,7 +47,7 @@ public class TrialManager : MonoBehaviour
         currentInstructionIndex = 0;
 
         List<string> selectedInstructions = new List<string>();
-        while (selectedInstructions.Count < 50)
+        while (selectedInstructions.Count < 25)
         {
             selectedInstructions.Add(currentPermutation[Random.Range(0, currentPermutation.Count)]);
         }
@@ -60,6 +60,16 @@ public class TrialManager : MonoBehaviour
 
     private void Update()
     {
+        if (MxInkHandler.ClusterFrontJustPressed())
+        {
+            bool hitButton = ButtonIdentifier.ButtonWasPressedThisFrame;
+
+            dataLogger.RecordRawSelectionAttempt(hitButton);
+
+            // Reset for next frame
+            ButtonIdentifier.ButtonWasPressedThisFrame = false;
+        }
+
         if (!trialRunning)
             return;
 

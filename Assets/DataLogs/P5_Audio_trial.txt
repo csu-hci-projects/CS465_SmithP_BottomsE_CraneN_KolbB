@@ -1,0 +1,4 @@
+Trial Completion Time (seconds): 42.7
+Correctness Rate (%): 1.00
+Hit Rate (%): 0.83
+Mean Selection Speed (seconds): 0.26

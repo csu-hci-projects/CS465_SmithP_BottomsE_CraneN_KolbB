@@ -1,3 +1,4 @@
+// ButtonFeedback.cs
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using static FeedbackManager;
@@ -6,7 +7,7 @@ public class ButtonFeedback : MonoBehaviour
 {
     public FeedbackManager feedbackManager;
     public UnityEngine.XR.Interaction.Toolkit.Interactables.XRBaseInteractable interactable;
-    public AudioSource audioSource; // optional - for click sound
+    public AudioSource audioSource;
 
     private void OnEnable()
     {
@@ -18,28 +19,27 @@ public class ButtonFeedback : MonoBehaviour
         interactable.selectEntered.RemoveListener(OnPressed);
     }
 
-    private void OnPressed(SelectEnterEventArgs args)
+    void OnHoverEnter(HoverEnterEventArgs args)
     {
         var type = feedbackManager.currentFeedbackType;
-
-        if (type == FeedbackManager.FeedbackType.Haptic || type == FeedbackManager.FeedbackType.HapticAudioVisual)
-            SendHaptic(args.interactorObject);
-
-        if (type == FeedbackManager.FeedbackType.Audio || type == FeedbackManager.FeedbackType.HapticAudioVisual)
-            PlaySound();
-    }
-
-    private void SendHaptic(UnityEngine.XR.Interaction.Toolkit.Interactors.IXRInteractor interactor)
-    {
-        if (interactor is UnityEngine.XR.Interaction.Toolkit.Interactors.XRBaseInputInteractor controllerInteractor)
+        if ((type == FeedbackType.Audio || type == FeedbackType.HapticAudioVisual) && audioSource != null)
         {
-            controllerInteractor.SendHapticImpulse(0.5f, 0.1f); // strength, duration
+            audioSource.volume = 0.3f;
+            audioSource.Play();
         }
     }
 
-    private void PlaySound()
+    private void OnPressed(SelectEnterEventArgs args)
     {
-        if (audioSource != null)
+        var type = feedbackManager.currentFeedbackType;
+        Debug.Log("Button Pressed. Feedback Type: " + type);
+
+        if ((type == FeedbackType.Audio || type == FeedbackType.HapticAudioVisual) && audioSource != null)
+        {
+            Debug.Log("Playing Audio Now");
+            audioSource.volume = 1.0f;
             audioSource.Play();
+        }
     }
+
 }

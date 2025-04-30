@@ -26,13 +26,6 @@ public class ButtonIdentifier : MonoBehaviour
         lastHoverStartTime = Time.time;
     }
 
-    private void OnSelectEntered(SelectEnterEventArgs args)
-    {
-        LastPressed = buttonName.ToLower(); // store button pressed (lowercase for matching)
-
-        Debug.Log($"Button pressed: {LastPressed}");
-    }
-
     public static float GetHoverDurationAndReset()
     {
         if (lastHoverStartTime == 0f)
@@ -41,5 +34,13 @@ public class ButtonIdentifier : MonoBehaviour
         float duration = Time.time - lastHoverStartTime;
         lastHoverStartTime = 0f;
         return duration;
+    }
+    public static bool ButtonWasPressedThisFrame = false;
+
+    private void OnSelectEntered(SelectEnterEventArgs args)
+    {
+        LastPressed = buttonName.ToLower();
+        ButtonWasPressedThisFrame = true;
+        Debug.Log($"Button pressed: {LastPressed}");
     }
 }

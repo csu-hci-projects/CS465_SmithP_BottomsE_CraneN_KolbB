@@ -64,7 +64,7 @@ public class MxInkHandler : StylusHandler
         bool wasPressedLastFrame = _stylus.cluster_front_value;
         _stylus.cluster_front_value = _grabActionRef.action.IsPressed();
         _stylus.cluster_back_value = _optionActionRef.action.IsPressed();
-        clusterFrontJustPressed = (!_stylus.cluster_front_value && _grabActionRef.action.IsPressed());
+        clusterFrontJustPressed = _grabActionRef.action.WasPressedThisFrame();
 
         _tip.GetComponent<MeshRenderer>().material.color = _stylus.tip_value > 0 ? active_color : default_color;
         _cluster_front.GetComponent<MeshRenderer>().material.color = _stylus.cluster_front_value ? active_color : default_color;
@@ -96,5 +96,4 @@ public class MxInkHandler : StylusHandler
         }
         return false;
     }
-
 }
